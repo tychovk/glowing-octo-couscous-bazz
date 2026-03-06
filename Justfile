@@ -1,4 +1,4 @@
-export image_name := env("IMAGE_NAME", "bazzite-nvidia") # output image name, usually same as repo name, change as needed
+export image_name := env("IMAGE_NAME", "glowing-octo-couscous-bazz") # output image name, usually same as repo name, change as needed
 export default_tag := env("DEFAULT_TAG", "stable")
 export bib_image := env("BIB_IMAGE", "quay.io/centos-bootc/bootc-image-builder:latest")
 
