@@ -324,10 +324,10 @@ install_drivers() {
   fi
 
   # Build and install drivers
-  make -C /var/lib/modules/6.17.7-ba25.fc43.x86_64/build M=$EXTRACTED_DIR/Linuwu-Sense clean # before: make clean
+  make -C /usr/lib/modules/6.17.7-ba25.fc43.x86_64/build M=$EXTRACTED_DIR/Linuwu-Sense clean # before: make clean
 ls -lh /var/lib/modules
 
-  make -C /var/lib/modules/$(uname -r)/build # before: make
+  make -C /usr/lib/modules/$(uname -r)/build # before: make
   make install
 
   if [ $? -eq 0 ]; then
