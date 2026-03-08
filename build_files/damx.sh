@@ -7,7 +7,7 @@
 # Constants
 SCRIPT_VERSION="1.0.0"
 GITHUB_REPO="PXDiv/Div-Acer-Manager-Max"
-INSTALL_DIR="/opt/damx"
+INSTALL_DIR="/var/opt/damx" #changed from /opt/damx - if temp files, it's ok. otherwise run script to move it to /usr/lib/opt
 BIN_DIR="/usr/local/bin"
 SYSTEMD_DIR="/etc/systemd/system"
 DAEMON_SERVICE_NAME="damx-daemon.service"
