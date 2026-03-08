@@ -324,11 +324,11 @@ install_drivers() {
   fi
 
   # Build and install drivers
-  make -C /usr/lib/modules/6.17.7-ba25.fc43.x86_64/build M=$(pwd)/Linuwu-Sense clean # before: make clean
+  make -C /usr/lib/modules/6.17.7-ba25.fc43.x86_64/build M=$(pwd) clean # before: make clean
 ls -lh /usr/lib/modules
 
-  make -C /usr/lib/modules/$(uname -r)/build # before: make
-  make install
+  make -C /usr/lib/modules/6.17.7-ba25.fc43.x86_64/build M=$(pwd) # before: make
+  make install -C /usr/lib/modules/6.17.7-ba25.fc43.x86_64/build M=$(pwd) # before: make install
 
   if [ $? -eq 0 ]; then
     echo -e "${GREEN}Linuwu-Sense drivers installed successfully!${NC}"
