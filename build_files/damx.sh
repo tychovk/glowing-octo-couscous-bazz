@@ -14,6 +14,7 @@ DAEMON_SERVICE_NAME="damx-daemon.service"
 DESKTOP_FILE_DIR="/usr/share/applications"
 ICON_DIR="/usr/share/icons/hicolor/256x256/apps"
 TEMP_DIR="/tmp/damx-install-$$"
+KERNEL_VERSION=$(rpm -q --queryformat="%{evr}.%{arch}" kernel-core)
 
 # Legacy paths for cleanup (uppercase naming convention)
 LEGACY_INSTALL_DIR="/opt/DAMX"
@@ -324,9 +325,7 @@ install_drivers() {
   fi
 
   # Build and install drivers
-  make -C /usr/lib/modules/6.17.7-ba25.fc43.x86_64/build M=$(pwd) clean # before: make clean
-ls -lh /usr/lib/modules
-
+  make -C /usr/lib/modules/$KERNEL_VERSION/build M=$(pwd) clean # before: make clean
   make -C /usr/lib/modules/6.17.7-ba25.fc43.x86_64/build M=$(pwd) # before: make
   make install -C /usr/lib/modules/6.17.7-ba25.fc43.x86_64/build M=$(pwd) # before: make install
 
