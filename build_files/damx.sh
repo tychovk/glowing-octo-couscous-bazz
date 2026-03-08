@@ -8,7 +8,7 @@
 SCRIPT_VERSION="1.0.0"
 GITHUB_REPO="PXDiv/Div-Acer-Manager-Max"
 INSTALL_DIR="/var/opt/damx" #changed from /opt/damx - if temp files, it's ok. otherwise run script to move it to /usr/lib/opt
-BIN_DIR="/usr/local/bin"
+BIN_DIR="/var/usrlocal/bin"
 SYSTEMD_DIR="/etc/systemd/system"
 DAEMON_SERVICE_NAME="damx-daemon.service"
 DESKTOP_FILE_DIR="/usr/share/applications"
@@ -326,8 +326,8 @@ install_drivers() {
 
   # Build and install drivers
   make -C /usr/lib/modules/$KERNEL_VERSION/build M=$(pwd) clean # before: make clean
-  make -C /usr/lib/modules/6.17.7-ba25.fc43.x86_64/build M=$(pwd) # before: make
-  make install -C /usr/lib/modules/6.17.7-ba25.fc43.x86_64/build M=$(pwd) # before: make install
+  make -C /usr/lib/modules/$KERNEL_VERSION/build M=$(pwd) # before: make
+  make install -C /usr/lib/modules/$KERNEL_VERSION/build M=$(pwd) # before: make install
 
   if [ $? -eq 0 ]; then
     echo -e "${GREEN}Linuwu-Sense drivers installed successfully!${NC}"
@@ -374,10 +374,11 @@ StandardError=journal
 WantedBy=multi-user.target
 EOL
 
+## commented out since it's not a live system
   # Enable and start the service
-  systemctl daemon-reload
-  systemctl enable ${DAEMON_SERVICE_NAME}
-  systemctl start ${DAEMON_SERVICE_NAME}
+#  systemctl daemon-reload
+#  systemctl enable ${DAEMON_SERVICE_NAME}
+#  systemctl start ${DAEMON_SERVICE_NAME}
 
   # Verify service is running
   if systemctl is-active --quiet ${DAEMON_SERVICE_NAME}; then
