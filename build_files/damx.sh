@@ -215,8 +215,6 @@ cleanup_legacy_installation() {
       cleanup_performed=true
     fi
   done
-
-  return 0
 }
 
 # Function to perform comprehensive cleanup for uninstall/reinstall
@@ -318,6 +316,9 @@ StandardError=journal
 [Install]
 WantedBy=multi-user.target
 EOL
+}
+
+
 
 install_gui() {
   echo -e "${YELLOW}Installing DAMX-GUI...${NC}"
