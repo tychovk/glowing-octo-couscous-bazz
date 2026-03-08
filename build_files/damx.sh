@@ -187,18 +187,6 @@ cleanup_legacy_installation() {
   if [ -f "${SYSTEMD_DIR}/${LEGACY_DAEMON_SERVICE_NAME}" ]; then
     echo -e "${BLUE}Found legacy service file: ${LEGACY_DAEMON_SERVICE_NAME}${NC}"
 
-    # Stop the legacy service if it's running
-    if systemctl is-active --quiet ${LEGACY_DAEMON_SERVICE_NAME} 2>/dev/null; then
-      echo "Stopping legacy service..."
-      systemctl stop ${LEGACY_DAEMON_SERVICE_NAME}
-    fi
-
-    # Disable the legacy service if it's enabled
-    if systemctl is-enabled --quiet ${LEGACY_DAEMON_SERVICE_NAME} 2>/dev/null; then
-      echo "Disabling legacy service..."
-      systemctl disable ${LEGACY_DAEMON_SERVICE_NAME}
-    fi
-
     # Remove the legacy service file
     echo "Removing legacy service file..."
     rm -f "${SYSTEMD_DIR}/${LEGACY_DAEMON_SERVICE_NAME}"
@@ -228,32 +216,12 @@ cleanup_legacy_installation() {
     fi
   done
 
-  # Reload systemd daemon if any service changes were made
-  if [ "$cleanup_performed" = true ]; then
-    echo "Reloading systemd daemon configuration..."
-    systemctl daemon-reload
-    echo -e "${GREEN}Legacy installation cleanup completed.${NC}"
-  else
-    echo -e "${GREEN}No legacy installations found.${NC}"
-  fi
-
   return 0
 }
 
 # Function to perform comprehensive cleanup for uninstall/reinstall
 comprehensive_cleanup() {
   echo -e "${YELLOW}Performing comprehensive cleanup...${NC}"
-
-  # Stop and disable current daemon service
-  if systemctl is-active --quiet ${DAEMON_SERVICE_NAME} 2>/dev/null; then
-    echo "Stopping current DAMX-Daemon service..."
-    systemctl stop ${DAEMON_SERVICE_NAME}
-  fi
-
-  if systemctl is-enabled --quiet ${DAEMON_SERVICE_NAME} 2>/dev/null; then
-    echo "Disabling current DAMX-Daemon service..."
-    systemctl disable ${DAEMON_SERVICE_NAME}
-  fi
 
   # Remove current service file
   if [ -f "${SYSTEMD_DIR}/${DAEMON_SERVICE_NAME}" ]; then
@@ -270,9 +238,6 @@ comprehensive_cleanup() {
   rm -f ${BIN_DIR}/DAMX
   rm -f ${DESKTOP_FILE_DIR}/damx.desktop
   rm -f ${ICON_DIR}/damx.png
-
-  # Final systemd daemon reload
-  systemctl daemon-reload
 
   echo -e "${GREEN}Comprehensive cleanup completed.${NC}"
   return 0
@@ -354,22 +319,6 @@ StandardError=journal
 WantedBy=multi-user.target
 EOL
 
-## commented out since it's not a live system
-  # Enable and start the service
-#  systemctl daemon-reload
-#  systemctl enable ${DAEMON_SERVICE_NAME}
-#  systemctl start ${DAEMON_SERVICE_NAME}
-
-  # Verify service is running
-  if systemctl is-active --quiet ${DAEMON_SERVICE_NAME}; then
-    echo -e "${GREEN}DAMX-Daemon installed and service started successfully!${NC}"
-    return 0
-  else
-    echo -e "${RED}Warning: DAMX-Daemon service may not have started correctly. Check with 'systemctl status ${DAEMON_SERVICE_NAME}'${NC}"
-    return 1
-  fi
-}
-
 install_gui() {
   echo -e "${YELLOW}Installing DAMX-GUI...${NC}"
 
@@ -407,6 +356,9 @@ Type=Application
 Categories=Utility;System;
 Keywords=acer;laptop;system;
 EOL
+
+  # OWN COMMAND: create the bin dir
+  mkdir -p ${BIN_DIR}
 
   # Create command shortcut
   cat > ${BIN_DIR}/DAMX << EOL
