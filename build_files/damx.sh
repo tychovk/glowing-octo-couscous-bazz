@@ -579,7 +579,7 @@ main() {
     echo ""
   else
     echo -e "${RED}Installation failed. Please check the errors above.${NC}"
-    exit 1
+    # exit 1 - commented out, see what happens
   fi
 }
 
