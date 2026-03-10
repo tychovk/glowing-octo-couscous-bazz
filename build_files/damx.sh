@@ -268,9 +268,9 @@ install_drivers() {
   fi
 
   # Build and install drivers
-  make -C /usr/lib/modules/$KERNEL_VERSION/build M=$(pwd) clean # before: make clean
-  make -C /usr/lib/modules/$KERNEL_VERSION/build M=$(pwd) # before: make
-  make install -C /usr/lib/modules/$KERNEL_VERSION/build M=$(pwd) # before: make install
+  make -C /usr/lib/modules/$KERNEL_VERSION/build M=$(pwd) KVER=$KERNEL_VERSION clean # before: make clean
+  make -C /usr/lib/modules/$KERNEL_VERSION/build M=$(pwd) KVER=$KERNEL_VERSION # before: make
+  make install -C /usr/lib/modules/$KERNEL_VERSION/build M=$(pwd) KVER=$KERNEL_VERSION # before: make install
 
   if [ $? -eq 0 ]; then
     echo -e "${GREEN}Linuwu-Sense drivers installed successfully!${NC}"
