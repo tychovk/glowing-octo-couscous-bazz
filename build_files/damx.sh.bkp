@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -ouex pipefail
+
 # DAMX Remote Installer Script
 # This script downloads and installs the latest DAMX Suite for Acer laptops on Linux
 # Usage: curl -sSL https://raw.githubusercontent.com/PXDiv/Div-Acer-Manager-Max/main/remote-setup.sh | bash
@@ -8,16 +10,13 @@
 SCRIPT_VERSION="1.0.0"
 GITHUB_REPO="PXDiv/Div-Acer-Manager-Max"
 INSTALL_DIR="/var/opt/damx" #changed from /opt/damx - if temp files, it's ok. otherwise run script to move it to /usr/lib/opt
-BIN_DIR="/var/usrlocal/bin" #changed from /usr/local/bin
+BIN_DIR="/var/usrlocal/bin"
 SYSTEMD_DIR="/etc/systemd/system"
 DAEMON_SERVICE_NAME="damx-daemon.service"
 DESKTOP_FILE_DIR="/usr/share/applications"
 ICON_DIR="/usr/share/icons/hicolor/256x256/apps"
 TEMP_DIR="/tmp/damx-install-$$"
 KVER=$(rpm -q --queryformat="%{evr}.%{arch}" kernel-core)
-# constants for linuwu-sense
-KDIR="/lib/modules/${KVER}/build"
-MDIR="/lib/modules/${KVER}/kernel/drivers/platform/x86"
 
 # Legacy paths for cleanup (uppercase naming convention)
 LEGACY_INSTALL_DIR="/opt/DAMX"
@@ -54,8 +53,6 @@ check_root() {
   fi
 }
 
-
-
 print_banner() {
   clear
   echo -e "${BLUE}==========================================${NC}"
@@ -63,6 +60,49 @@ print_banner() {
   echo -e "${BLUE}    Acer Laptop WMI Controls for Linux  ${NC}"
   echo -e "${BLUE}==========================================${NC}"
   echo ""
+}
+
+# Function to check required tools
+check_dependencies() {
+  echo -e "${YELLOW}Checking dependencies...${NC}"
+  
+  local missing_deps=()
+  
+  # Check for required tools
+  if ! command -v curl &> /dev/null; then
+    missing_deps+=("curl")
+  fi
+  
+  if ! command -v tar &> /dev/null; then
+    missing_deps+=("tar")
+  fi
+  
+  if ! command -v jq &> /dev/null; then
+    missing_deps+=("jq")
+  fi
+  
+  # Install missing dependencies
+  if [ ${#missing_deps[@]} -gt 0 ]; then
+    echo -e "${YELLOW}Installing missing dependencies: ${missing_deps[*]}${NC}"
+    
+    # Detect package manager and install
+    if command -v apt-get &> /dev/null; then
+      apt-get update && apt-get install -y "${missing_deps[@]}"
+    elif command -v yum &> /dev/null; then
+      yum install -y "${missing_deps[@]}"
+    elif command -v dnf &> /dev/null; then
+      dnf install -y "${missing_deps[@]}"
+    elif command -v pacman &> /dev/null; then
+      pacman -S --noconfirm "${missing_deps[@]}"
+    elif command -v zypper &> /dev/null; then
+      zypper install -y "${missing_deps[@]}"
+    else
+      echo -e "${RED}Error: Cannot install dependencies automatically. Please install: ${missing_deps[*]}${NC}"
+      exit 1
+    fi
+  fi
+  
+  echo -e "${GREEN}Dependencies check completed.${NC}"
 }
 
 # Function to get latest release info
@@ -203,6 +243,52 @@ comprehensive_cleanup() {
   return 0
 }
 
+install_drivers() {
+  echo -e "${YELLOW}Installing Linuwu-Sense drivers...${NC}"
+
+  if [ ! -d "$EXTRACTED_DIR/Linuwu-Sense" ]; then
+    echo -e "${RED}Error: Linuwu-Sense directory not found in package!${NC}"
+    return 1
+  fi
+
+  cd "$EXTRACTED_DIR/Linuwu-Sense"
+
+  # Check if make is installed
+  if ! command -v make &> /dev/null; then
+    echo -e "${YELLOW}Installing build tools...${NC}"
+    if command -v apt-get &> /dev/null; then
+      apt-get update && apt-get install -y build-essential linux-headers-$(uname -r)
+    elif command -v yum &> /dev/null; then
+      yum install -y gcc make kernel-devel
+    elif command -v dnf &> /dev/null; then
+      dnf install -y gcc make kernel-devel
+    elif command -v pacman &> /dev/null; then
+      pacman -S --noconfirm base-devel linux-headers
+    elif command -v zypper &> /dev/null; then
+      zypper install -y gcc make kernel-devel
+    fi
+  fi
+
+  # Build and install linuwu drivers
+  make -L -C /usr/lib/modules/$KVER/build M=$(pwd) -e clean # before: make clean
+#  make -C /usr/lib/modules/$KVER/build M=$(pwd) # before: make
+#  make -C /usr/lib/modules/$KVER/build -p M=$(pwd) | head -20 #tryout
+make -L -C /usr/lib/modules/$KVER/build -p M=$(pwd) -e
+make install -L -C /usr/lib/modules/$KVER/build M=$(pwd) -e
+# make install -C /usr/lib/modules/$KVER/build M=$(pwd) # before: make install
+[ -f /lib/modules/$KVER/kernel/drivers/platform/x86/linuwu_sense.ko ] && echo “linuwu file exists.” || echo “linuwu file does not exist”
+
+  if [ $? -eq 0 ]; then
+    echo -e "${GREEN}Linuwu-Sense drivers installed successfully!${NC}"
+    cd "$TEMP_DIR"
+    return 0
+  else
+    echo -e "${RED}Error: Failed to install Linuwu-Sense drivers${NC}"
+    cd "$TEMP_DIR"
+    return 1
+  fi
+}
+
 install_daemon() {
   echo -e "${YELLOW}Installing DAMX-Daemon...${NC}"
 
@@ -299,6 +385,10 @@ perform_install() {
 
   # Create main installation directory
   mkdir -p ${INSTALL_DIR}
+
+  # Install components
+  install_drivers
+  DRIVER_RESULT=$?
 
   install_daemon
   DAEMON_RESULT=$?
@@ -432,27 +522,27 @@ main() {
   fi
 }
 
-# Handle command line arguments
-case "${1:-}" in
-  --uninstall)
-    check_root "$@"
-    print_banner
-    uninstall
-    exit 0
-    ;;
-  --help|-h)
-    echo "DAMX Remote Installer"
-    echo ""
-    echo "Usage:"
-    echo "  curl -sSL https://raw.githubusercontent.com/PXDiv/Div-Acer-Manager-Max/main/remote-setup.sh | bash"
-    echo "  curl -sSL https://raw.githubusercontent.com/PXDiv/Div-Acer-Manager-Max/main/remote-setup.sh | bash -s -- --uninstall"
-    echo ""
-    echo "Options:"
-    echo "  --uninstall    Uninstall DAMX Suite"
-    echo "  --help, -h     Show this help message"
-    exit 0
-    ;;
-  *)
-    main "$@"
-    ;;
-esac
+## Handle command line arguments
+#case "${1:-}" in
+#  --uninstall)
+#    check_root "$@"
+#    print_banner
+#    uninstall
+#    exit 0
+#    ;;
+#  --help|-h)
+#    echo "DAMX Remote Installer"
+#    echo ""
+#    echo "Usage:"
+#    echo "  curl -sSL https://raw.githubusercontent.com/PXDiv/Div-Acer-Manager-Max/main/remote-setup.sh | bash"
+#    echo "  curl -sSL https://raw.githubusercontent.com/PXDiv/Div-Acer-Manager-Max/main/remote-setup.sh | bash -s -- --uninstall"
+#    echo ""
+#    echo "Options:"
+#    echo "  --uninstall    Uninstall DAMX Suite"
+#    echo "  --help, -h     Show this help message"
+#    exit 0
+#    ;;
+#  *)
+#    main "$@"
+#    ;;
+#esac

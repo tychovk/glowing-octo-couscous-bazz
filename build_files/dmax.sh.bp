@@ -203,6 +203,46 @@ comprehensive_cleanup() {
   return 0
 }
 
+install_drivers() {
+  echo -e "${YELLOW}Installing Linuwu-Sense drivers...${NC}"
+
+  if [ ! -d "$EXTRACTED_DIR/Linuwu-Sense" ]; then
+    echo -e "${RED}Error: Linuwu-Sense directory not found in package!${NC}"
+    return 1
+  fi
+
+  cd "$EXTRACTED_DIR/Linuwu-Sense"
+
+  # Check if make is installed
+  if ! command -v make &> /dev/null; then
+    echo -e "${YELLOW}Installing build tools...${NC}"
+    if command -v dnf &> /dev/null; then
+      dnf install -y gcc make kernel-devel-$KVER
+    fi
+  fi
+
+  # Build and install linuwu drivers
+#  make -C /usr/lib/modules/$KVER/build M=$(pwd) -e clean # before: make clean
+make -C /lib/modules/$KVER/build M=$(pwd) KVER=$KVER KDIR=$KDIR MDIR=$MDIR V=1 clean
+#  make -C /usr/lib/modules/$KVER/build M=$(pwd) # before: make
+make -C /lib/modules/$KVER/build M=$(pwd) KVER=$KVER KDIR=$KDIR MDIR=$MDIR V=1
+make -C /lib/modules/$KVER/build M=$(pwd) KVER=$KVER KDIR=$KDIR MDIR=$MDIR V=1 install
+# make install -C /usr/lib/modules/$KVER/build M=$(pwd) # before: make install
+  [ -f /lib/modules/$KVER/kernel/drivers/platform/x86/linuwu_sense.ko ] && echo “linuwu file exists in /lib/modules” || echo “linuwu file does not exist”
+  [ -f /usr/lib/modules/$KVER/kernel/drivers/platform/x86/linuwu_sense.ko ] && echo “linuwu file exists in /usr/lib/modules” || echo “linuwu file does not exist”
+
+
+  if [ $? -eq 0 ]; then
+    echo -e "${GREEN}Linuwu-Sense drivers installed successfully!${NC}"
+    cd "$TEMP_DIR"
+    return 0
+  else
+    echo -e "${RED}Error: Failed to install Linuwu-Sense drivers${NC}"
+    cd "$TEMP_DIR"
+    return 1
+  fi
+}
+
 install_daemon() {
   echo -e "${YELLOW}Installing DAMX-Daemon...${NC}"
 
@@ -299,6 +339,10 @@ perform_install() {
 
   # Create main installation directory
   mkdir -p ${INSTALL_DIR}
+
+  # Install components
+  install_drivers
+  DRIVER_RESULT=$?
 
   install_daemon
   DAEMON_RESULT=$?
