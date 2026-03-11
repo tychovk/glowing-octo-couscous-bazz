@@ -29,7 +29,7 @@ make
 # Manually install the module
 echo "Installing Linuwu-Sense module..."
 mkdir -p /lib/modules/$KVER/extra
-cp $LINUWU_SENSE_DIR/src/linuwu_sense.ko /lib/modules/$KVER/extra/
+cp $LINUWU_SENSE_DIR/src/linuwu_sense.ko /lib/modules/$KVER/kernel/drivers/platform/x86
 depmod -a
 
 # Blacklist the stock acer_wmi module to prevent conflicts
