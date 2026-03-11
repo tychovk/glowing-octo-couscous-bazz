@@ -267,7 +267,7 @@ install_drivers() {
     fi
   fi
 
-  # Build and install drivers
+  # Build and install linuwu drivers
   make -C /usr/lib/modules/$KERNEL_VERSION/build M=$(pwd) KVER=$KERNEL_VERSION clean # before: make clean
   make -C /usr/lib/modules/$KERNEL_VERSION/build M=$(pwd) KVER=$KERNEL_VERSION # before: make
   make install -C /usr/lib/modules/$KERNEL_VERSION/build M=$(pwd) KVER=$KERNEL_VERSION # before: make install
