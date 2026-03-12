@@ -12,9 +12,6 @@ set -ouex pipefail
 # this installs a package from fedora repos
 dnf5 install -y tmux
 
-# App to manage game collection
-dnf5 install -y lutris
-
 # Throttlestop: install msr-tools
 dnf5 install -y msr-tools
 
