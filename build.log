@@ -1,0 +1,265 @@
+[1/2] STEP 1/2: FROM scratch AS ctx
+[1/2] STEP 2/2: COPY build_files /
+--> 097bc7da0760
+[2/2] STEP 1/5: FROM ghcr.io/ublue-os/bazzite-nvidia:stable
+Trying to pull ghcr.io/ublue-os/bazzite-nvidia:stable...
+Getting image source signatures
+Checking if image destination supports signatures
+Copying blob sha256:d9cfaa664ae9bdc35f648a181545d8ef55f8ca20ee4c17a482723a6cf5eb5824
+Copying blob sha256:91a6e11bd8f15528f5a09cf9d555a109c1c8d9d2aa15ff6a43bd5cf24443e5fa
+Copying blob sha256:ea77f8a8867329c87c5fc1c87c2b027e67602a36b1001da748e12daca535fd06
+Copying blob sha256:53ce32ceb31e956500a3320d16458803e2bc84f04b954af7a27bd3f1742077df
+Copying blob sha256:8ec92a38993b5daf95d2c9eb44e9594e0055da6a22fc75515c7d322f5a98133c
+Copying blob sha256:c5f1252f3adcbb48fbc8a6c1d6166b784733ee7bb0a5c9055d2303ecaaa76cc0
+Copying blob sha256:6c8c7fce973d6db8047eefd32a457bfa582828d6f557ef4bc923323c0f496104
+Copying blob sha256:124ffd6720bab62804c4695ac37b42c83bbbb9510ba1480ac0c2b67fe3cbbf93
+Copying blob sha256:d65bac34ee6b9b142b105494cf7ced9578645c68332f5cac3068e12c64769760
+Copying blob sha256:4f887020f2fb1d5f388f47cf5ee67610b1d45443387a3e7985d60e5dc26ab257
+Copying blob sha256:339cd46e4b4c4a00bda65847f8af1fe9813301ea0ffc8f7aea59cface080feca
+Copying blob sha256:3b645aaadf6f2295f12666addcbcbc11b6a82fa05ab58a11f69acf88c4457fa0
+Copying blob sha256:fd460c0e11a6c550539a27e8d7e6465183f3b00f539e14ba472a72af286fea9a
+Copying blob sha256:87ae910cc4d6abab9228b508918526f3601cd9fc144746dc1b8d20bfb1ee2026
+Copying blob sha256:96c061e36f29a1104b37c43e8be0b20b63ae05fd22e9fe9416a99c46df70e984
+Copying blob sha256:de71e85f0861c15b72a84a1e0757a14b75857806b22f21a09b6d121dc215efa0
+Copying blob sha256:fe6fc424db9d1ac57c7be8078a84c200eae474e44918f3393683386a09be612b
+Copying blob sha256:4ca68de2e586eef5b48d147d786d38de26314fc3b23f7e07eb8ced9c90c5cb34
+Copying blob sha256:788c4416249a706d11205f403a3d9dcb4d193a395f9296a8e70d24743ad1a5c7
+Copying blob sha256:e0c196623146c1b8cec2f972a3bc768f8aaf20777eac2f5c3a05613006713bd2
+Copying blob sha256:4f2eba5270394461a35782086db2744fd11b8869cb646549a8dc9ea781388495
+Copying blob sha256:d8ee587760266ad23932af15cb033f95957e26e03320ab97b2a71cb33a2ee9f7
+Copying blob sha256:7c8ce7b3426776434500064a9bb9c79813e5a5b72ae8bbc5c0870e364e016ff3
+Copying blob sha256:c945c0729c2aa15afd4f3fd6d6939d922fcdbcfbab3583c8e702d6849ceb5ebb
+Copying blob sha256:4464baad62f319b4a1c165fb4e62e2e81204e0b928f368b9da4c47f10736c21b
+Copying blob sha256:fffa18eeb96916c442d55380501d8407ff7c49c619073a21f3fc09c9f8ed4779
+Copying blob sha256:b7ba13e1e6e244928ab3c667f303b5952284862ba220e25787cfce4cc9e45a12
+Copying blob sha256:8777b3aa2f3f338f94d1ffe103acb4d3e7ffabfed5cf5d90954d90bc07307548
+Copying blob sha256:861250ec6c1b94d3a617862c14e0767a467274bf76bad3cc7134f8f6999d69c0
+Copying blob sha256:052f441948301efc274d5eeb96598e156c9f6792b87ec6df9f95dc1d3f7a20a1
+Copying blob sha256:7539c514140284f1900a816612c0d9c92ab1fe4cdf241a78b2fc3e02680a958f
+Copying blob sha256:13f7ce0bad973591c8ccb705e2d627e300a022bcb23e28db81eb007b32a2b4ee
+Copying blob sha256:38b41584a478503d070a4943cc68509743de7c43b72b28700fb3faa0db903ff8
+Copying blob sha256:6adb7d5b34407c757a60537e4fe8a96abe43645355bf71994c3309ab3457473e
+Copying blob sha256:b0e31c42095466d84a7f29671d3004bdb5604196c003b59648470b368618c0d9
+Copying blob sha256:b92f22629c80ce3062b59d7e8aafbb70102bd8370c87d51f5e044a586df6182e
+Copying blob sha256:e6d0a702d9f84590ee9a8b9be26a2241387163f6529045d12b7155ac7969a539
+Copying blob sha256:4ce0f02658ca029ba28096a94cb1756d86b5fee57907c4981588d38fe25fdc89
+Copying blob sha256:3a11c1f2be8a64e6c7f2f5f7e839b8951394ba514ea6f19c3db2809f56779242
+Copying blob sha256:d5072c5f22f2614e55f95cccdc438a5381ce3372927e20410122f8c1684bb599
+Copying blob sha256:3fde3e38a4edbaf2eb09f414baa2893b6e825f2faf86c66283141d613ee93cc2
+Copying blob sha256:8f38f5dc160ad0b02cebb5a2179d359c4f43857114f0288be0c3cb00bfcea580
+Copying blob sha256:0798537ae71b9c0066f9c49366ac3b0b12ef58afb490660604279e3f7649bc53
+Copying blob sha256:66d2e04611dd0d0bc036e49c1a7d3433c89cb9d0028f7f0ef9eac89a24beb576
+Copying blob sha256:6ecd42dc668211f3c09346e2a424ab5c5b37b996e8017d03df0c28075e0d1012
+Copying blob sha256:7990c32b77f93b5b5e1b0c5b9a6ce5f918740245aaf89c02b2debee149bba366
+Copying blob sha256:984a1ce7730f12cc1f57a59cf38594ffe6b1695f6e3639cb0a8cab3ee01fb198
+Copying blob sha256:2c8a3c6290c6636f51da690e4c692a79d9d05bff513fde8d2b210b9c199f7242
+Copying blob sha256:694ba0319ad766ed56815efdea4f12e0e05fbc563b9aad9e1d409864fcca5631
+Copying blob sha256:6db8b2d2c859661dd2027a990b96d962d358257154d278ef43e9a157f26ff3f7
+Copying blob sha256:ecc5b2322eae18290515c120a7bf5b97bdb48fefe2359d9d73b2101ea5d96aa9
+Copying blob sha256:a792e297322c3d2c001dd8f0021906ce3d2f83734e1ef378b5eccdd11a1ae88f
+Copying blob sha256:dedcae043763c40714ba3fc157a594165bf757c836671d5b5752a4b3cb7e91ef
+Copying blob sha256:5f6d698c50c18012cba239df4684253c3a4b935f181dadf034433e543c73ae0a
+Copying blob sha256:d0fff3346fbc3b529e1ad133d33e47c9fea61f350b1bd30b26b85fee77b3621e
+Copying blob sha256:95a03a814560dbc91bf1b5a4e906d504d1e41ce32aafe511535581fe9ce52ae6
+Copying blob sha256:ad8621b369bdfabf49a27a2518a7808f1bd1c083cae978c934aeb737f35a3e78
+Copying blob sha256:73e770b8ce9e8794e821250b0153cf8ff232fa1e77feb10641e908a96596d5b9
+Copying blob sha256:bea244cbc474fc370f9a3564aa5ec5321e7f398295b939d1b971f8bd5904ee6b
+Copying blob sha256:52e0b96e155e666b29fb2edb6475bf57989546010a72cadba8ead4a18f5dc135
+Copying blob sha256:d46adbbb4f353c6a9dc225a4063ac6afce0417a6050800cd6312ace59b10ef5c
+Copying blob sha256:d26e1cf2060717b1b3317a38c310f280da22d3e01557549dac061013648bc58b
+Copying blob sha256:9e9bd1012822f8230c1212368420a5a885592966d8240115467dd323a417f966
+Copying blob sha256:d39061769e1a7ae7df21cc452e334539387a1fcc3a597cf7f98a52858d82135b
+Copying blob sha256:6055646296612d7b26c9266ae7a15b20cd65b53645e88b89231a9ac80c45cbff
+Copying blob sha256:a5c9184491f8dfb78b4edd619b1793182215fb9ff8a4dffba9e0d2c6ab2fbf38
+Copying blob sha256:0ff6743ac4c83bc512b7592961d84a6ea0360e375a5f51f47df13e8e41a18086
+Copying blob sha256:80b25ff5a9d9c62872319dcee333d2811229b17d625d25d79cddb70da1d6aa89
+Copying blob sha256:c6cac5db025edbe3acb5c038167797a6a95238d9dc0cec43a1574f3fe4ea5def
+Copying blob sha256:5cee0f716052b7c09693ccff9e39e2bbe75cccdac712999670ccae0b26d1f6d8
+Copying blob sha256:4e7a1e80af6767da9981366a6706c931bd1948d6fab02cc8102d3377a394a474
+Copying blob sha256:20a5194deb6f5391c31c2dedd103d0e57212af542b668bf039622970b9eb17ac
+Copying blob sha256:9dad063a624b62064bf25dbbc2e802e472d636056f661f2a0be73efd8a4da98b
+Copying config sha256:5e15a3250390ecc20a06d285b55b92ded69e4be975053c7fd2d6e763ae358aab
+Writing manifest to image destination
+Storing signatures
+[2/2] STEP 2/5: RUN --mount=type=bind,from=ctx,source=/,target=/ctx     --mount=type=cache,dst=/var/cache     --mount=type=cache,dst=/var/log     --mount=type=tmpfs,dst=/tmp     /ctx/build.sh
++ dnf5 install -y tmux
+Updating and loading repositories:
+ Fedora 43 - x86_64 - Updates           100% |   2.0 MiB/s |   9.1 MiB |  00m05s
+ Fedora 43 - x86_64 - Updates Archive   100% |   3.8 MiB/s |  27.4 MiB |  00m07s
+ Fedora 43 - x86_64                     100% |   3.4 MiB/s |  44.7 MiB |  00m13s
+Repositories loaded.
+Package "tmux-3.5a-7.fc43.x86_64" is already installed.
+
+Nothing to do.
++ dnf5 install -y msr-tools
+Updating and loading repositories:
+Repositories loaded.
+Package    Arch   Version     Repository      Size
+Installing:
+ msr-tools x86_64 1.3-30.fc43 fedora      38.3 KiB
+
+Transaction Summary:
+ Installing:         1 package
+
+Total size of inbound packages is 20 KiB. Need to download 20 KiB.
+After this operation, 38 KiB extra will be used (install 38 KiB, remove 0 B).
+[1/1] msr-tools-0:1.3-30.fc43.x86_64    100% | 107.4 KiB/s |  19.9 KiB |  00m00s
+--------------------------------------------------------------------------------
+[1/1] Total                             100% |  21.8 KiB/s |  19.9 KiB |  00m01s
+Running transaction
+[1/3] Verify package files              100% |   0.0   B/s |   1.0   B |  00m00s
+[2/3] Prepare transaction               100% |   1.0   B/s |   1.0   B |  00m01s
+[3/3] Installing msr-tools-0:1.3-30.fc4 100% |  15.9 KiB/s |  39.9 KiB |  00m03s
+Complete!
++ dnf5 install -y docker
+Updating and loading repositories:
+Repositories loaded.
+Package          Arch   Version        Repository      Size
+Installing:
+ moby-engine     x86_64 29.2.1-2.fc43  updates    103.4 MiB
+Installing dependencies:
+ containerd      x86_64 2.1.6-1.fc43   updates     89.7 MiB
+ docker-cli      x86_64 29.2.1-2.fc43  updates     28.0 MiB
+ moby-filesystem noarch 29.2.1-2.fc43  updates      0.0   B
+ pigz            x86_64 2.8-7.fc43     fedora     163.0 KiB
+ runc            x86_64 2:1.4.0-1.fc43 updates     12.9 MiB
+ tini-static     x86_64 0.19.0-11.fc43 fedora     774.1 KiB
+
+Transaction Summary:
+ Installing:         7 packages
+
+Total size of inbound packages is 61 MiB. Need to download 61 MiB.
+After this operation, 235 MiB extra will be used (install 235 MiB, remove 0 B).
+[1/7] pigz-0:2.8-7.fc43.x86_64          100% | 618.8 KiB/s |  95.3 KiB |  00m00s
+[2/7] moby-engine-0:29.2.1-2.fc43.x86_6 100% |   3.0 MiB/s |  22.3 MiB |  00m08s
+[3/7] docker-cli-0:29.2.1-2.fc43.x86_64 100% |   1.1 MiB/s |   8.0 MiB |  00m07s
+[4/7] moby-filesystem-0:29.2.1-2.fc43.n 100% | 411.3 KiB/s |  15.6 KiB |  00m00s
+[5/7] tini-static-0:0.19.0-11.fc43.x86_ 100% | 653.8 KiB/s | 322.3 KiB |  00m00s
+[6/7] runc-2:1.4.0-1.fc43.x86_64        100% |   2.2 MiB/s |   3.7 MiB |  00m02s
+[7/7] containerd-0:2.1.6-1.fc43.x86_64  100% |   2.6 MiB/s |  26.2 MiB |  00m10s
+--------------------------------------------------------------------------------
+[7/7] Total                             100% |   5.5 MiB/s |  60.6 MiB |  00m11s
+Running transaction
+[1/9] Verify package files              100% |  11.0   B/s |   7.0   B |  00m01s
+[2/9] Prepare transaction               100% |   9.0   B/s |   7.0   B |  00m01s
+[3/9] Installing moby-filesystem-0:29.2 100% |  11.5 KiB/s | 400.0   B |  00m00s
+[4/9] Installing docker-cli-0:29.2.1-2. 100% |  80.2 MiB/s |  28.1 MiB |  00m00s
+[5/9] Installing runc-2:1.4.0-1.fc43.x8 100% | 129.0 MiB/s |  12.9 MiB |  00m00s
+[6/9] Installing containerd-0:2.1.6-1.f 100% | 131.8 MiB/s |  89.8 MiB |  00m01s
+[7/9] Installing tini-static-0:0.19.0-1 100% |  21.0 MiB/s | 775.4 KiB |  00m00s
+[8/9] Installing pigz-0:2.8-7.fc43.x86_ 100% |   1.7 MiB/s | 164.5 KiB |  00m00s
+>>> Running sysusers scriptlet: moby-engine-0:29.2.1-2.fc43.x86_64              
+>>> Finished sysusers scriptlet: moby-engine-0:29.2.1-2.fc43.x86_64             
+>>> Scriptlet output:                                                           
+>>> Failed to connect to audit log, ignoring: Invalid argument                  
+>>> Creating group 'docker' with GID 956.                                       
+>>>                                                                             
+[9/9] Installing moby-engine-0:29.2.1-2 100% |  76.1 MiB/s | 103.5 MiB |  00m01s
+>>> Running %post scriptlet: moby-engine-0:29.2.1-2.fc43.x86_64                 
+>>> Finished %post scriptlet: moby-engine-0:29.2.1-2.fc43.x86_64                
+>>> Scriptlet output:                                                           
+>>> Created symlink '/etc/systemd/system/sockets.target.wants/docker.socket' 
+>>>                                                                             
+>>> Running %triggerin scriptlet: systemd-0:258.5-2.fc43.x86_64                 
+>>> Finished %triggerin scriptlet: systemd-0:258.5-2.fc43.x86_64                
+>>> Scriptlet output:                                                           
+>>> Failed to connect to audit log, ignoring: Invalid argument                  
+>>>                                                                             
+Complete!
++ systemctl enable podman.socket
+Created symlink '/etc/systemd/system/sockets.target.wants/podman.socket' → '/usr/lib/systemd/system/podman.socket'.
++ echo msr
+--> cb2cb9cee9f9
+[2/2] STEP 3/5: RUN --mount=type=bind,from=ctx,source=/,target=/ctx     --mount=type=cache,dst=/var/cache     --mount=type=cache,dst=/var/log     --mount=type=tmpfs,dst=/tmp     /ctx/linuwu-sense.sh
+Integrating Linuwu-Sense into the image...
+Cloning Linuwu-Sense repository...
+Cloning into '/tmp/Linuwu-Sense'...
+Removing signing block from Makefile...
+Building and installing Linuwu-Sense...
+make -C /lib/modules/6.17.7-ba28.fc43.x86_64/build M=/tmp/Linuwu-Sense modules
+make[1]: Entering directory '/usr/src/kernels/6.17.7-ba28.fc43.x86_64'
+make[2]: Entering directory '/tmp/Linuwu-Sense'
+  CC [M]  src/linuwu_sense.o
+  MODPOST Module.symvers
+  CC [M]  src/linuwu_sense.mod.o
+  CC [M]  .module-common.o
+  LD [M]  src/linuwu_sense.ko
+  BTF [M] src/linuwu_sense.ko
+Skipping BTF generation for src/linuwu_sense.ko due to unavailability of vmlinux
+make[2]: Leaving directory '/tmp/Linuwu-Sense'
+make[1]: Leaving directory '/usr/src/kernels/6.17.7-ba28.fc43.x86_64'
+Installing Linuwu-Sense module...
+Blacklisting stock acer_wmi module...
+Enabling linuwu_sense module at boot...
+Linuwu-Sense integration complete.
+--> 2091007d6eb8
+[2/2] STEP 4/5: RUN --mount=type=bind,from=ctx,source=/,target=/ctx     --mount=type=cache,dst=/var/cache     --mount=type=cache,dst=/var/log     --mount=type=tmpfs,dst=/tmp     /ctx/damx.sh
+TERM environment variable not set.
+[0;34m==========================================[0m
+[0;34m    DAMX Remote Installer v1.0.0     [0m
+[0;34m    Acer Laptop WMI Controls for Linux  [0m
+[0;34m==========================================[0m
+
+[0;34mChecking system compatibility...[0m
+[0;32m✓ systemd found[0m
+Kernel version: 6.17.7-ba28.fc43.x86_64
+[0;32m✓ Kernel version 6.17 is supported[0m
+Detected OS: Bazzite
+[0;33mNote: Only Ubuntu is officially supported. Other distributions may work but are not guaranteed.[0m
+[0;32mSystem compatibility check completed.[0m
+/ctx/damx.sh: line 402: check_dependencies: command not found
+[0;33mFetching latest release information...[0m
+[0;32mLatest release found: DAMX v0.9.1[0m
+Download URL: https://github.com/PXDiv/Div-Acer-Manager-Max/releases/download/v0.9.1/DAMX-0.9.1.tar.xz
+[0;33mDownloading DAMX package...[0m
+Downloading DAMX-0.9.1.tar.xz...
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+  5 45.8M    5 2558k    0     0  3328k      0  0:00:14 --:--:--  0:00:14 3328k 26 45.8M   26 12.2M    0     0  7117k      0  0:00:06  0:00:01  0:00:05  9.7M 49 45.8M   49 22.5M    0     0  8338k      0  0:00:05  0:00:02  0:00:03 10.0M 67 45.8M   67 31.1M    0     0  8455k      0  0:00:05  0:00:03  0:00:02 9770k 83 45.8M   83 38.2M    0     0  8206k      0  0:00:05  0:00:04  0:00:01 9143k100 45.8M  100 45.8M    0     0  8326k      0  0:00:05  0:00:05 --:--:-- 9116k
+Extracting package...
+[0;32mPackage downloaded and extracted successfully.[0m
+
+[0;34mStarting DAMX Suite installation...[0m
+[0;34mPerforming cleanup before installation...[0m
+[0;33mPerforming comprehensive cleanup...[0m
+[0;33mChecking for legacy installations...[0m
+Removing current installation files...
+[0;32mComprehensive cleanup completed.[0m
+
+[0;33mInstalling DAMX-Daemon...[0m
+[0;33mInstalling DAMX-GUI...[0m
+[0;32mDAMX-GUI installed successfully![0m
+[0;31mSome components failed to install. Please check the errors above.[0m
+/ctx/damx.sh: line 310: [: -eq: unary operator expected
+[0;31mInstallation failed. Please check the errors above.[0m
+[0;33mCleaning up temporary files...[0m
+--> fb9e406a6752
+[2/2] STEP 5/5: RUN bootc container lint
+Lint warning: nonempty-run-tmp: Found content in runtime-only directories (/run, /tmp):
+  /run/dnf
+  /run/systemd
+  /run/systemd/resolve
+
+Lint warning: var-tmpfiles: Found content in /var missing systemd tmpfiles.d entries:
+  d /var/lib/dnf 0755 root root - -
+  d /var/lib/dnf/repos 0755 root root - -
+  d /var/lib/dnf/repos/fedora-fe4b228be7d3c150 0755 root root - -
+  d /var/lib/dnf/repos/updates-431245df5652aba0 0755 root root - -
+  d /var/opt/damx 0755 root root - -
+  ...and 3 more
+Found non-directory/non-symlink files in /var:
+  var/opt/damx/daemon/DAMX-Daemon
+  var/opt/damx/gui/DivAcerManagerMax
+  var/opt/damx/gui/icon.png
+  var/opt/damx/gui/iconTransparent.png
+  var/usrlocal/bin/DAMX
+  ...and 2 more
+
+Checks passed: 11
+Checks skipped: 1
+Warnings: 2
+[2/2] COMMIT glowing-octo-couscous-bazz:latest
+--> 2b1d5a3c7a1c
+Successfully tagged localhost/glowing-octo-couscous-bazz:latest
+2b1d5a3c7a1c3a6978c0d8141b689f075b5431ced7d11faae8fbd5c9bc32eeec
