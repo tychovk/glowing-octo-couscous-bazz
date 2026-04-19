@@ -15,6 +15,10 @@ dnf5 install -y tmux
 # Throttlestop: install msr-tools
 dnf5 install -y msr-tools
 
+# Krita and gimp for image manipulation
+dnf5 install -y krita
+dnf5 install -y gimp
+
 dnf5 install -y docker
 # Use a COPR Example:
 #
