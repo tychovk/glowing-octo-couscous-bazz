@@ -32,5 +32,3 @@ dnf5 install -y docker
 systemctl enable podman.socket
 
 
-# Throttlestop: add conf to load MSR kernel module
-echo "msr" > /etc/modules-load.d/msr.conf
