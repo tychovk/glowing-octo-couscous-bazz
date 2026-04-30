@@ -20,6 +20,9 @@ dnf5 install -y krita
 dnf5 install -y gimp
 
 dnf5 install -y docker
+
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+
 # Use a COPR Example:
 #
 # dnf5 -y copr enable ublue-os/staging
